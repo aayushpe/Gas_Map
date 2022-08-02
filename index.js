@@ -80,6 +80,7 @@ app.post('/stations/confirm', upload.single('image'), async(req, res) => {
   
         let[logoResult] = await client.logoDetection(req.file.path).catch(err => res.send(err));
 
+        //Error handle
         if(result.fullTextAnnotation && logoResult.logoAnnotations){
             const text = result.fullTextAnnotation.text;
             const logo = logoResult.logoAnnotations[0].description;
