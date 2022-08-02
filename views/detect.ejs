@@ -1,0 +1,35 @@
+<% layout('layout/boilerplate'); %> 
+<div class="row">
+    <h1 class="text-center">Auto Detect Station</h1>
+    <div class="col-6 offset-3">
+        <form action="/stations/confirm" method="POST" class="form-group" enctype="multipart/form-data">
+
+            <p class="mt-2">This will auto detect the price and station name from your image.</p>
+
+            <p class="mt-3">You can use these images as a test: <a href="https://res.cloudinary.com/dsrkak6g0/image/upload/v1658863138/GasMap/download_qx7pvo.jpg" target="_blank" rel="noopener norreferrer">Image 1</a>, <a href="https://res.cloudinary.com/dsrkak6g0/image/upload/v1659024174/GasMap/test2_yzoe8b.png" target="_blank" rel="noopener norreferrer">Image 2</a></p>
+            
+            <label class="form-label" for="image">Choose image: </label>
+            <input class="form-control" type="file" name="image" id="image" required>
+
+            
+            <label class="form-label" for="location">Enter location: </label>
+            <input class="form-control" type="text" name="location" id="location" >
+
+   
+            <label class="form-label mt-2" for="description">Description for station: </label>
+            <textarea class="form-control" id="description" name="description" rows="6" cols="50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium sunt nulla sapiente, ullam illum, natus dolor in ab quas odit impedit! Modi totam laboriosam soluta corporis odit, sapiente cum minima?
+            </textarea>
+
+            <div class="mt-3">
+                <button class="btn btn-info">Submit Station</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<hr>
+<div>
+    <a href="/stations">Back</a>
+</div>

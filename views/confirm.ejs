@@ -1,0 +1,24 @@
+<% layout('layout/boilerplate'); %> 
+    <% // Include label for, input name, and input id for forms %>        
+    <div class="container text-center">
+            <p>Detected Station: <%= station.title %> </p>
+            <p>Detected Price: $<%= station.price %>  </p>
+            <p>Location: <%= station.location %> </p>
+
+            <form action="/stations" class="d-inline">
+                <button class="btn btn-info">Confirm</button>
+            </form>
+            
+            <form action="/stations/<%= station._id %>/edit" class="d-inline">
+                <button class="btn btn-success">Edit</button>
+            </form>
+            
+            <form action="/stations/<%= station._id %>?_method=DELETE" method="POST" class="d-inline">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+
+    </div>
+    <hr>
+    <div>
+        <a href="/stations">Back</a>
+    </div>

@@ -1,0 +1,39 @@
+<% layout('layout/boilerplate'); %> 
+    <% // Include label for, input name, and input id for forms %> 
+    <div class="row">
+        <h1 class="text-center">New Station</h1>
+        <div class="col-6 offset-3">
+            <form action="/stations" method="POST" class="form-group" enctype="multipart/form-data">
+                <label class="form-label" for="title">Enter Station: </label>
+                <input class="form-control" type="text" name="title" id="title" required>
+        
+                <label class="form-label" for="location">Enter location: </label>
+                <input class="form-control" type="text" name="location" id="location" >
+        
+                <div class="input-group mb-3 mt-4">
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price">
+                </div>
+        
+                <label class="form-label" for="image">Choose image: </label>
+                <input class="form-control" type="file" name="image" id="image" required>
+       
+                <label class="form-label mt-2" for="description">Description for station: </label>
+                <textarea class="form-control" id="description" name="description" rows="6" cols="50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium sunt nulla sapiente, ullam illum, natus dolor in ab quas odit impedit! Modi totam laboriosam soluta corporis odit, sapiente cum minima?
+                </textarea>
+                
+                <div class="mt-3">
+                    <button class="btn btn-info">Submit Station</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <hr>
+    <div>
+        <a href="/stations">Back</a>
+    </div>
+
+

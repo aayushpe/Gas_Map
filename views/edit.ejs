@@ -1,0 +1,28 @@
+<% layout('layout/boilerplate'); %> 
+    
+<div class="col-6 offset-3">
+    <h1>Edit Station</h1>
+    <form action="/stations/<%= foundStation._id %>?_method=PUT" method="POST">
+        <label class="form-label" for="title">Enter Station: </label>
+        <input class="form-control" type="text" name="title" id="title" value="<%= foundStation.title %> ">
+
+        <label class="form-label" for="location">Enter location: </label>
+        <input class="form-control" type="text" name="location" id="location" value="<%= foundStation.location %> ">
+
+        <div class="input-group mb-3 mt-4">
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="<%= foundStation.price %>" name="price">
+        </div>
+
+        <label class="form-label mt-2" for="description">Description for station: </label>
+        <textarea class="form-control" id="description" name="description" rows="6" cols="50"><%= foundStation.description %> </textarea>
+        
+        <div class="mt-2">
+            <button class="btn btn-info">Submit</button>
+        </div>
+        
+        <hr>
+
+        <a href="/stations/<%= foundStation._id %> ">Back</a>
+    </form>
+</div>
