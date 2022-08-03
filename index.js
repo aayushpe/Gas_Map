@@ -66,21 +66,18 @@ app.get('/stations/confirm/:id', async (req, res) => {
 app.post('/stations/confirm', upload.single('image'), async(req, res) => {
     req.body.images = [{url: req.file.path, filename: req.file.filename}]; 
     cloudFile = req.file.filename;
+    const url = req.file.path;
     
-    const geoData = await geocoder.forwardGeocode({
-        query: req.body.location,
-        limit: 1
-    }).send()
-
-    //Google Client
     const client = new vision.ImageAnnotatorClient(CONFIG);
 
     const detectText = async (file_path) => {
-        let[result] = await client.textDetection(req.file.path).catch(err => res.send(err));
+        let[result] = await client.textDetection(url).catch(err => res.send(err));
   
-        let[logoResult] = await client.logoDetection(req.file.path).catch(err => res.send(err));
+        let[logoResult] = await client.logoDetection(url).catch(err => res.send(err));
 
-        //Error handle
+        console.log(result);
+        console.log(url);
+
         if(result.fullTextAnnotation && logoResult.logoAnnotations){
             const text = result.fullTextAnnotation.text;
             const logo = logoResult.logoAnnotations[0].description;
@@ -98,6 +95,11 @@ app.post('/stations/confirm', upload.single('image'), async(req, res) => {
             res.redirect(`/stations/confirm/${station._id}`);
         } else res.send('This feature is not working at this time');
       }
+
+      const geoData = await geocoder.forwardGeocode({
+          query: req.body.location,
+          limit: 1
+      }).send()
     
       detectText();
 })
