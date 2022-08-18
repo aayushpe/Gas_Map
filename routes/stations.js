@@ -70,9 +70,13 @@ router.post('/stations/confirm', upload.single('image'), async(req, res) => {
         let[result] = await client.textDetection(url).catch(err => res.send(err));
   
         let[logoResult] = await client.logoDetection(url).catch(err => res.send(err));
-        if(result.fullTextAnnotation && logoResult.logoAnnotations){
+
+        console.dir(result);
+
+        if(result.fullTextAnnotation && logoResult.logoAnnotations && result.fullTextAnnotation.text != undefined) {
             const text = result.fullTextAnnotation.text;
-            const logo = logoResult.logoAnnotations[0].description;
+            let logo;
+            if( logoResult.error === null){logo = logoResult.logoAnnotations[0].description;}
         
             const nums = /\d+/g;
             const whole = text.match(nums); 
@@ -85,7 +89,7 @@ router.post('/stations/confirm', upload.single('image'), async(req, res) => {
             await station.save().catch(err => console.log(err));
     
             res.redirect(`/stations/confirm/${station._id}`);
-        } else res.send('This feature is not working at this time');
+        } else res.send('Sometimes Google API requests fail. Please retry');
       }
 
       const geoData = await geocoder.forwardGeocode({

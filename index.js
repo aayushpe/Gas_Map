@@ -10,9 +10,10 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
 const stations = require('./routes/stations');
 app.use('/', stations);
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000');
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on Port ${process.env.PORT}`);
 })
